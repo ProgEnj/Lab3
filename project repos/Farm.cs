@@ -24,7 +24,4 @@ public class Farm
     
     public Farm() : this("Farm")
     {}
-    
-    
-
 }
