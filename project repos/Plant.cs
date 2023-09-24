@@ -7,11 +7,11 @@ public abstract record Plant
     public int GrowingTime { get; }
     public bool IsNeedReGrow { get; }
     
-    protected Plant(string shortName, string fullName, int growingTime, bool isNeedGrow)
+    protected Plant(string shortName, string fullName, int growingTime, bool isNeedReGrow)
     {
         ShortName = shortName;
         FullName = fullName;
         GrowingTime = growingTime;
-        IsNeedReGrow = isNeedGrow;
+        IsNeedReGrow = isNeedReGrow;
     }
 };
