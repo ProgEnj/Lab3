@@ -1,17 +1,17 @@
 ﻿namespace project_repos;
 
-public class Plant
+public abstract record Plant
 {
     public string ShortName { get; }
     public string FullName { get; }
     public int GrowingTime { get; }
-    public bool IsNeedRegrow { get; }
-
-    private Plant(string shortName, string fullName, int growingTime, bool isNeedRegrow)
+    public bool IsNeedReGrow { get; }
+    
+    protected Plant(string shortName, string fullName, int growingTime, bool isNeedGrow)
     {
         ShortName = shortName;
         FullName = fullName;
         GrowingTime = growingTime;
-        IsNeedRegrow = isNeedRegrow;
+        IsNeedReGrow = isNeedGrow;
     }
-}
+};
