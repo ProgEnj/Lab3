@@ -10,7 +10,7 @@ public class Farmer
         {
             if (value.Length > 15)
             {
-                throw new Exception("Length exceeds 30 characters");
+                throw new Exception("Length exceeds 15 characters");
             }
             else
             { firstName = value; }
@@ -24,7 +24,7 @@ public class Farmer
         {
             if (value.Length > 15)
             {
-                throw new Exception("Length exceeds 30 characters");
+                throw new Exception("Length exceeds 15 characters");
             }
             else
             { lastName = value; }

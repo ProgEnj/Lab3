@@ -15,7 +15,7 @@ public class Farm
         {
             if (value.Length > 15)
             {
-                throw new Exception("Length exceeds 30 characters");
+                throw new Exception("Length exceeds 15 characters");
             }
             else { name = value; }
         }
@@ -29,14 +29,11 @@ public class Farm
         Farmer = farmer;
     }
     
-    public Farm(string name, int limit) : this(name, limit, null)
-    {}
+    public Farm(string name, int limit) : this(name, limit, null) {}
     
-    public Farm(string name) : this(name, 20)
-    {}
+    public Farm(string name) : this(name, 20) {}
     
-    public Farm() : this("Farm")
-    {}
+    public Farm() : this("Farm") {}
     
     public bool AddPlant(Plant plant)
     {
