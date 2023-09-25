@@ -2,10 +2,10 @@
 
 public class Farmer
 {
-    private string firstName;
+    private string _firstName;
     public string FirstName
     {
-        get { return firstName; }
+        get { return _firstName; }
         set
         {
             if (value.Length > 15)
@@ -13,13 +13,13 @@ public class Farmer
                 throw new Exception("Length exceeds 15 characters");
             }
             else
-            { firstName = value; }
+            { _firstName = value; }
         }
     }
-    private string lastName;
+    private string _lastName;
     public string LastName
     {
-        get { return lastName; }
+        get { return _lastName; }
         set
         {
             if (value.Length > 15)
@@ -27,7 +27,7 @@ public class Farmer
                 throw new Exception("Length exceeds 15 characters");
             }
             else
-            { lastName = value; }
+            { _lastName = value; }
         }
     }
     public string Specialization { get; set; }

@@ -7,17 +7,17 @@ public class Farm
 
     private int _plantsLimit;
     public int PlantsLimit => _plantsLimit;
-    private string name;
+    private string _name;
     public string Name
     {
-        get { return name; }
+        get { return _name; }
         set
         {
             if (value.Length > 15)
             {
                 throw new Exception("Length exceeds 15 characters");
             }
-            else { name = value; }
+            else { _name = value; }
         }
     }
     
