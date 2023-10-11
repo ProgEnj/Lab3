@@ -8,7 +8,11 @@ public class Farmer
         get { return _firstName; }
         set
         {
-            if (value.Length > 15)
+            if (value.Length <= 0)
+            {
+                throw new Exception("Lenght of name <= 0");
+            }
+            else if (value.Length > 15)
             {
                 throw new Exception("Length exceeds 15 characters");
             }
@@ -30,6 +34,7 @@ public class Farmer
             { _lastName = value; }
         }
     }
+    
     public string Specialization { get; set; }
 
     public Farmer(string firstName, string lastName, string specialization)
@@ -37,5 +42,22 @@ public class Farmer
         FirstName = firstName;
         LastName = lastName;
         Specialization = specialization;
+    }
+
+    public void CollectHarvest(object sender, PlantGrownEventArgs e)
+    {
+        Farm farm = e.Farm;
+        Plant plant = e.Plant;
+        
+        
+        farm.Storage.Add(plant.Yield());
+        if (plant.IsNeedReGrow)
+        {
+            plant.StartTimer(farm);
+        }
+        else
+        {
+            farm.DeletePlant(plant);
+        }
     }
 }

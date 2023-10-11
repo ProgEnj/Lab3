@@ -4,6 +4,7 @@ public class Farm
 {
     public List<Plant> PlantsOnGrowing { get; }
     public Farmer? Farmer { get; private set; }
+    public List<Harvest> Storage;
 
     private int _plantsLimit;
     public int PlantsLimit => _plantsLimit;
@@ -13,9 +14,13 @@ public class Farm
         get { return _name; }
         set
         {
-            if (value.Length > 15)
+            if (value.Length <= 0)
             {
-                throw new Exception("Length exceeds 15 characters");
+                throw new Exception("Lenght of name <= 0");
+            }
+            else if (value.Length > 15)
+            {
+                throw new Exception("Length of name exceeds 15 characters");
             }
             else { _name = value; }
         }
@@ -25,7 +30,8 @@ public class Farm
     {
         Name = name;
         _plantsLimit = limit;
-        PlantsOnGrowing = new List<Plant>(20);
+        PlantsOnGrowing = new List<Plant>(limit);
+        Storage = new List<Harvest>();
         Farmer = farmer;
     }
     
@@ -42,12 +48,15 @@ public class Farm
             return false;
         }
         PlantsOnGrowing.Add(plant);
+        plant.PlantGrown += Farmer.CollectHarvest;
+        plant.StartTimer(this);
         return true;
     }
     
     public bool DeletePlant(Plant plant)
     {
         return PlantsOnGrowing.Remove(plant);
+        plant.PlantGrown -= Farmer.CollectHarvest;
     }
     
     public Plant? FindByPlantName(string name)
@@ -60,4 +69,31 @@ public class Farm
         Farmer = farmer;
     }
 
+    public void ChangeFarmer(Farmer? newFarmer)
+    {
+        if (PlantsOnGrowing.Count() == 0)
+        {
+            foreach (var plant in PlantsOnGrowing)
+            {
+                plant.PlantGrown -= Farmer.CollectHarvest;
+                plant.PlantGrown += newFarmer.CollectHarvest;
+            }
+        }
+    }
+
+    public void PrintPlants()
+    {
+        foreach (var plant in PlantsOnGrowing)
+        {
+            Console.WriteLine(plant.FullName);
+        }
+    }
+
+    public void PrintStorage()
+    {
+        foreach (var item in Storage)
+        {
+            Console.WriteLine(item.type + Storage.IndexOf(item));
+        }
+    }
 }
